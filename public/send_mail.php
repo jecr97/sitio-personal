@@ -1,6 +1,16 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
+// Try to load composer autoload (PHPMailer, vlucas/phpdotenv) if present
+$autoload = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoload)) {
+    require $autoload;
+    // Load .env if vlucas/phpdotenv is available
+    if (class_exists('Dotenv\\Dotenv') && file_exists(__DIR__ . '/../.env')) {
+        Dotenv\\Dotenv::createImmutable(__DIR__ . '/..')->safeLoad();
+    }
+}
+
 $input = json_decode(file_get_contents('php://input'), true);
 if (!$input) {
     echo json_encode(['ok' => false, 'error' => 'invalid_json']);
@@ -19,7 +29,7 @@ if (!$name || !$email || !$message) {
 }
 
 // Destination email (change to your address)
-$to = 'tu@correo.com';
+$to = getenv('MAIL_TO') ?: 'tu@correo.com';
 
 // Try PHPMailer if available (recommended). Otherwise fallback to mail().
 if (class_exists('PHPMailer\\PHPMailer\\PHPMailer')) {
@@ -35,6 +45,11 @@ if (class_exists('PHPMailer\\PHPMailer\\PHPMailer')) {
             $mail->Password = getenv('SMTP_PASS');
             $mail->SMTPSecure = getenv('SMTP_SECURE') ?: 'tls';
             $mail->Port = getenv('SMTP_PORT') ?: 587;
+            // Optional debug
+            if (getenv('SMTP_DEBUG') == '1') {
+                $mail->SMTPDebug = 2;
+                $mail->Debugoutput = function($str, $level) { error_log($str); };
+            }
         }
 
         $mail->setFrom(getenv('SMTP_FROM') ?: ($mail->Username ?? 'no-reply@localhost'), 'Contacto web');

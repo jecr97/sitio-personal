@@ -1,7 +1,34 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useState } from 'react';
+
+const socials = [
+  {
+    icon: faEnvelope,
+    label: 'Email',
+    value: 'it-support@je-innovate.com',
+    href: 'mailto:it-support@je-innovate.com',
+    bg: 'bg-primary/20',
+    color: 'text-accent',
+  },
+  {
+    icon: faLinkedin,
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/tu-perfil',
+    href: '#',
+    bg: 'bg-blue-500/20',
+    color: 'text-blue-400',
+  },
+  {
+    icon: faGithub,
+    label: 'GitHub',
+    value: 'jecr97',
+    href: 'https://github.com/jecr97/',
+    bg: 'bg-white/10',
+    color: 'text-gray-300',
+  },
+];
 
 export default function Contact() {
   const [status, setStatus] = useState(null);
@@ -25,9 +52,9 @@ export default function Contact() {
         body: JSON.stringify({ name, email, message })
       });
       const data = await res.json();
-      if (data.ok) setStatus({ ok: true, msg: 'Mensaje enviado, gracias.' });
+      if (data.ok) { setStatus({ ok: true, msg: 'Mensaje enviado. ¡Gracias!' }); form.reset(); }
       else setStatus({ ok: false, msg: data.error || 'Error al enviar' });
-    } catch (err) {
+    } catch {
       setStatus({ ok: false, msg: 'Error de red' });
     } finally {
       setSending(false);
@@ -35,80 +62,71 @@ export default function Contact() {
   }
 
   return (
-    <div className="bg-[#181a1f] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="contact">
-      {/* Fondo decorativo imitando código */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none" 
-           style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1470&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}
-      />
-      
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 relative z-10">
-        
-        {/* Info Contacto */}
-        <div className="flex-1">
-          <h2 className="text-white text-3xl font-bold mb-4">Contáctame</h2>
-          <p className="text-gray-400 mb-10 pb-6 border-b border-gray-800">
-            Ponte en contacto conmigo para oportunidades o colaboraciones.
+    <section className="section-padding bg-[#04080f]" id="contact">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-accent text-xs font-medium mb-4">
+            Contacto
+          </span>
+          <h2 className="section-title mb-3">Hablemos</h2>
+          <p className="section-subtitle max-w-lg mx-auto">
+            ¿Tienes un proyecto o quieres colaborar? Escríbeme y te respondo pronto.
           </p>
-
-          <div className="space-y-8">
-            <div className="flex items-center gap-6">
-              <div className="bg-gray-800 p-3 rounded-full">
-                <FontAwesomeIcon icon={faEnvelope} className="text-gray-300 text-xl" />
-              </div>
-              <span className="text-gray-200 text-lg font-medium">it-support@je-innovate.com</span>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <div className="bg-blue-600 p-3 rounded-full">
-                <FontAwesomeIcon icon={faLinkedin} className="text-white text-xl" />
-              </div>
-              <span className="text-gray-200 text-lg font-medium">linkedin.com/in/tu-perfil</span>
-            </div>
-          </div>
         </div>
 
-        {/* Formulario */}
-        <div className="flex-1">
-          <h2 className="text-white text-3xl font-bold mb-8">Enviar Mensaje</h2>
-          <form name="contactForm" className="space-y-4" onSubmit={handleSubmit}>
-            <input 
-              name="name"
-              type="text" 
-              placeholder="Tu Nombre" 
-              className="w-full bg-[#1e2126] border border-gray-700 text-gray-200 px-4 py-3 rounded focus:outline-none focus:border-blue-500 transition-colors"
-            />
-            <input 
-              name="email"
-              type="email" 
-              placeholder="Tu Email" 
-              className="w-full bg-[#1e2126] border border-gray-700 text-gray-200 px-4 py-3 rounded focus:outline-none focus:border-blue-500 transition-colors"
-            />
-            <textarea 
-              name="message"
-              placeholder="Tu Mensaje" 
-              rows="5"
-              className="w-full bg-[#1e2126] border border-gray-700 text-gray-200 px-4 py-3 rounded focus:outline-none focus:border-blue-500 transition-colors resize-none"
-            ></textarea>
-            <div className="flex items-center justify-between pt-2">
-              <div>
-                {status && (
-                  <span className={status.ok ? 'text-green-400' : 'text-red-400'}>{status.msg}</span>
-                )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* Left: info */}
+          <div className="flex flex-col gap-4">
+            {socials.map((s) => (
+              <a key={s.label} href={s.href}
+                className="card p-5 flex items-center gap-4 hover:border-accent/40 group transition-all duration-200">
+                <div className={`w-11 h-11 rounded-xl ${s.bg} flex items-center justify-center shrink-0`}>
+                  <FontAwesomeIcon icon={s.icon} className={`${s.color} text-lg`} />
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--text-secondary)] mb-0.5">{s.label}</p>
+                  <p className="text-white text-sm font-medium group-hover:text-accent transition-colors">{s.value}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Right: form */}
+          <div className="card p-8">
+            <form name="contactForm" className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Nombre</label>
+                  <input name="name" type="text" placeholder="Tu nombre"
+                    className="input-field" />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Email</label>
+                  <input name="email" type="email" placeholder="tu@correo.com"
+                    className="input-field" />
+                </div>
               </div>
               <div>
-                <button 
-                  type="submit" 
-                  disabled={sending}
-                  className="border border-white/20 bg-white/5 text-white font-medium px-8 py-3 rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.6)] transition duration-200 hover:bg-white/10 hover:border-white/40 disabled:opacity-50"
-                >
-                  {sending ? 'Enviando...' : 'Enviar'}
+                <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Mensaje</label>
+                <textarea name="message" rows="5" placeholder="Cuéntame sobre tu proyecto..."
+                  className="input-field resize-none"></textarea>
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                {status ? (
+                  <span className={`text-xs font-medium ${status.ok ? 'text-green-400' : 'text-red-400'}`}>{status.msg}</span>
+                ) : <span />}
+                <button type="submit" disabled={sending}
+                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                  {sending ? 'Enviando...' : 'Enviar mensaje'}
+                  <FontAwesomeIcon icon={faPaperPlane} className="text-xs" />
                 </button>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-
       </div>
-    </div>
+    </section>
   );
 }

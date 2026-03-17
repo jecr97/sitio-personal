@@ -1,50 +1,99 @@
 import { useParams, Link } from 'react-router-dom';
 import projects from '../data/projects';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faEnvelope, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export default function ProjectDetail(){
+function ProjectCard({ p }) {
+  return (
+    <Link to={`/proyectos/${p.id}`}
+      className="group card overflow-hidden flex flex-col hover:shadow-card-hover transition-all duration-300">
+      <div className="relative h-40 overflow-hidden bg-surface-2">
+        {p.img ? (
+          <>
+            <img src={p.img} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
+            <span className="text-4xl text-white/20 font-bold">{p.title.charAt(0)}</span>
+          </div>
+        )}
+      </div>
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-accent transition-colors">{p.title}</h3>
+        <p className="text-[var(--text-secondary)] text-xs leading-relaxed flex-1 mb-3">{p.description}</p>
+        <span className="inline-flex items-center gap-1 text-accent text-xs font-medium">
+          Ver detalle <FontAwesomeIcon icon={faArrowRight} className="text-[10px] group-hover:translate-x-1 transition-transform" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+export default function ProjectDetail() {
   const { id } = useParams();
 
   if (id) {
     const project = projects.find((p) => p.id === id);
+
     if (project) {
       const subject = encodeURIComponent(`Solicitud de demo - ${project.title}`);
-      const body = encodeURIComponent(`Hola,%0D%0A%0D%0AMe gustaría solicitar más información sobre ${project.title}.%0D%0A%0D%0AGracias.`);
+      const body = encodeURIComponent(`Hola,\n\nMe gustaría solicitar más información sobre ${project.title}.\n\nGracias.`);
 
       return (
-        <div className="bg-[#0f1113] py-20 px-4 sm:px-6 lg:px-8 min-h-screen">
-          <div className="max-w-5xl mx-auto bg-[#16171a] rounded-xl overflow-hidden shadow-xl relative">
-            <Link to="/proyectos" aria-label="Cerrar" className="absolute top-4 right-4 bg-[#0b1220] hover:bg-[#0f1720] text-gray-300 rounded-full p-2 shadow">
-              <span className="sr-only">Cerrar</span>
-              ×
+        <div className="min-h-screen bg-[#04080f] section-padding">
+          <div className="max-w-5xl mx-auto">
+            <Link to="/proyectos"
+              className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-white transition-colors mb-8">
+              <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
+              Volver a proyectos
             </Link>
-            <div className="md:flex">
+
+            <div className="card overflow-hidden">
               {project.img && (
-                <div className="md:w-1/2 bg-cover bg-center" style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45)), url(${project.img})` }}>
-                  <div className="p-8 h-full flex items-end">
-                    <h1 className="text-3xl text-white font-bold">{project.title}</h1>
+                <div className="relative h-64 sm:h-80 overflow-hidden">
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
+                  <div className="absolute bottom-6 left-8">
+                    <h1 className="text-3xl font-bold text-white">{project.title}</h1>
                   </div>
                 </div>
               )}
-              <div className={`${project.img ? 'md:w-1/2' : 'w-full'} p-8`}>
-                <h2 className="text-xl text-gray-200 font-semibold mb-4">Resumen</h2>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+
+              <div className="p-8">
+                {!project.img && <h1 className="text-3xl font-bold text-white mb-6">{project.title}</h1>}
+
+                <h2 className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Resumen</h2>
+                <p className="text-[var(--text-secondary)] leading-relaxed mb-6">{project.description}</p>
 
                 {project.id === 'tarjetas' && (
                   <>
-                    <h3 className="text-gray-200 font-semibold mt-4">Funcionalidades clave</h3>
-                    <ul className="list-disc ml-6 text-gray-300 mb-4">
-                      <li>Registrar tarjetas y fechas de pago.</li>
-                      <li>Añadir gastos y marcar si es tu deuda o te deben a ti.</li>
-                      <li>Alertas antes de la fecha de pago.</li>
-                      <li>Registro de pagos por persona y seguimiento por tarjeta.</li>
+                    <h3 className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Funcionalidades clave</h3>
+                    <ul className="space-y-1 mb-6">
+                      {['Registrar tarjetas y fechas de pago.',
+                        'Añadir gastos y marcar si es tu deuda o te deben a ti.',
+                        'Alertas antes de la fecha de pago.',
+                        'Registro de pagos por persona y seguimiento por tarjeta.',
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-[var(--text-secondary)] text-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
                     </ul>
-                    <p className="text-gray-300 mb-6">Puedes solicitar acceso o una demo por correo:</p>
                   </>
                 )}
 
-                <div className="flex items-center gap-4">
-                  <a href={`mailto:ventas@example.com?subject=${subject}&body=${body}`} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded shadow">Contactar por correo</a>
-                  <Link to="/proyectos" className="text-gray-300 hover:underline">Volver a proyectos</Link>
+                <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border">
+                  <a href={`mailto:it-support@je-innovate.com?subject=${subject}&body=${body}`}
+                    className="btn-primary">
+                    <FontAwesomeIcon icon={faEnvelope} className="text-xs" />
+                    Contactar por correo
+                  </a>
+                  <Link to="/proyectos" className="btn-ghost">
+                    <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
+                    Volver
+                  </Link>
                 </div>
               </div>
             </div>
@@ -53,60 +102,31 @@ export default function ProjectDetail(){
       );
     }
 
-    // Si se especificó id pero no existe, mostrar lista detallada en lugar de error
     return (
-      <div className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center relative">
-          <Link to="/proyectos" aria-label="Volver a proyectos" className="absolute top-4 right-4 bg-[#0b1220] hover:bg-[#0f1720] text-gray-300 rounded-full p-2 shadow">
-            <span className="sr-only">Volver a proyectos</span>
-            ×
+      <div className="min-h-screen bg-[#04080f] section-padding">
+        <div className="max-w-5xl mx-auto">
+          <Link to="/proyectos" className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-white transition-colors mb-8">
+            <FontAwesomeIcon icon={faArrowLeft} className="text-xs" /> Volver
           </Link>
-          <h2 className="text-2xl text-white mb-4">Proyecto no encontrado</h2>
-          <p className="text-gray-300 mb-6">El proyecto solicitado no existe. A continuación se muestran todos los proyectos con su detalle.</p>
-          <Link to="/proyectos" className="mt-6 inline-block text-blue-500 hover:underline">Volver a proyectos</Link>
-        </div>
-        <div className="max-w-5xl mx-auto mt-10 space-y-8">
-          {projects.map((p) => (
-            <div key={p.id} className="bg-[#16171a] rounded-xl overflow-hidden shadow p-6 md:flex">
-              {p.img && <div className="md:w-1/3 bg-cover bg-center rounded-md mr-6" style={{ backgroundImage: `url(${p.img})`, minHeight: 120 }} />}
-              <div className="md:flex-1">
-                <h3 className="text-xl text-white font-semibold">{p.title}</h3>
-                <p className="text-gray-300 mt-2">{p.description}</p>
-                <div className="mt-4">
-                  <Link to={`/proyectos/${p.id}`} className="text-blue-400 hover:underline">Ver detalle</Link>
-                </div>
-              </div>
-            </div>
-          ))}
+          <p className="text-[var(--text-secondary)] mb-10">Proyecto no encontrado.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {projects.map((p) => <ProjectCard key={p.id} p={p} />)}
+          </div>
         </div>
       </div>
     );
   }
 
-  // Si no hay id, mostrar la lista completa de proyectos detallados
   return (
-    <div className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center relative">
-          <Link to="/proyectos" aria-label="Volver a proyectos" className="absolute top-4 right-4 bg-[#0b1220] hover:bg-[#0f1720] text-gray-300 rounded-full p-2 shadow">
-            <span className="sr-only">Volver a proyectos</span>
-            ×
-          </Link>
-        <h2 className="text-2xl text-white mb-4">Todos los proyectos</h2>
-        <p className="text-gray-300 mb-6">A continuación están los proyectos y su información detallada.</p>
-      </div>
-      <div className="max-w-5xl mx-auto mt-6 space-y-8">
-        {projects.map((p) => (
-          <div key={p.id} className="bg-[#16171a] rounded-xl overflow-hidden shadow p-6 md:flex">
-            {p.img && <div className="md:w-1/3 bg-cover bg-center rounded-md mr-6" style={{ backgroundImage: `url(${p.img})`, minHeight: 120 }} />}
-            <div className="md:flex-1">
-              <h3 className="text-xl text-white font-semibold">{p.title}</h3>
-              <p className="text-gray-300 mt-2">{p.description}</p>
-              <div className="mt-4">
-                <Link to={`/proyectos/${p.id}`} className="text-blue-400 hover:underline">Ver detalle</Link>
-              </div>
-            </div>
-          </div>
-        ))}
+    <div className="min-h-screen bg-[#04080f] section-padding">
+      <div className="max-w-5xl mx-auto">
+        <div className="mb-12">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-accent text-xs font-medium mb-4">Proyectos</span>
+          <h2 className="section-title">Todos los proyectos</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {projects.map((p) => <ProjectCard key={p.id} p={p} />)}
+        </div>
       </div>
     </div>
   );

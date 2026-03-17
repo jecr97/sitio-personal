@@ -20,16 +20,17 @@ function Home() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[#181a1f] font-sans antialiased text-gray-200">
+      <div className="min-h-screen bg-[#04080f] font-sans antialiased">
         <Navbar />
         {/* Espaciador para el navbar fijo */}
-        <div className="h-16"></div>
+        <div className="h-16" />
         
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/acerca" element={<About />} />
           <Route path="/proyectos" element={<Projects />} />
           <Route path="/proyectos/:id" element={<ProjectDetail />} />
+          <Route path="/contacto" element={<Contact />} />
         </Routes>
       </div>
     </Router>
