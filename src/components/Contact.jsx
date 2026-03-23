@@ -15,8 +15,8 @@ const socials = [
   {
     icon: faLinkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/tu-perfil',
-    href: '#',
+    value: 'linkedin.com/in/eduardo-contreras-chivaa97/',
+    href: 'https://linkedin.com/in/eduardo-contreras-chivaa97/',
     bg: 'bg-blue-500/20',
     color: 'text-blue-400',
   },
@@ -117,10 +117,15 @@ export default function Contact() {
                 {status ? (
                   <span className={`text-xs font-medium ${status.ok ? 'text-green-400' : 'text-red-400'}`}>{status.msg}</span>
                 ) : <span />}
+                {/*
                 <button type="submit" disabled={sending}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
                   {sending ? 'Enviando...' : 'Enviar mensaje'}
                   <FontAwesomeIcon icon={faPaperPlane} className="text-xs" />
+                </button>
+                */}
+                <button type="button" className="btn-primary opacity-80 cursor-not-allowed" disabled>
+                  En proceso
                 </button>
               </div>
             </form>

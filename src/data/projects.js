@@ -1,5 +1,6 @@
 import maquilaImg from '../assets/proyectos/maquila/image.png';
 import tarjetasImg from '../assets/proyectos/tarjetas/image.png';
+import paymentImg from '../assets/proyectos/payment/image.png';
 
 const projects = [
   {
@@ -15,9 +16,10 @@ const projects = [
     img: tarjetasImg,
   },
   {
-    id: 'api-dev',
-    title: 'API Development',
-    description: 'Diseño e implementación de una API REST segura para una aplicación financiera.',
+    id: 'payment',
+    title: 'Sistema de Inscripción y Pago',
+    description: 'Plataforma de inscripción a torneo con integración de pasarelas de pago, cupones de descuento, webhooks asincronos y confirmación con QR. Demostración ficticia con datos estáticos.',
+    img: paymentImg,
   },
   {
     id: 'microservices',

@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import projects from '../data/projects';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Projects() {
+  const location = useLocation();
+  const isProjectsPage = location.pathname === '/proyectos';
+
   return (
     <section className="section-padding bg-surface border-b border-border" id="projects">
       <div className="max-w-7xl mx-auto">
@@ -15,11 +18,13 @@ export default function Projects() {
             </span>
             <h2 className="section-title">Proyectos Recientes</h2>
           </div>
-          <Link to="/proyectos"
-            className="text-sm text-[var(--text-secondary)] hover:text-accent transition-colors flex items-center gap-1 group shrink-0">
-            Ver todos
-            <FontAwesomeIcon icon={faArrowRight} className="text-xs group-hover:translate-x-1 transition-transform" />
-          </Link>
+          {!isProjectsPage && (
+            <Link to="/proyectos"
+              className="text-sm text-[var(--text-secondary)] hover:text-accent transition-colors flex items-center gap-1 group shrink-0">
+              Ver todos
+              <FontAwesomeIcon icon={faArrowRight} className="text-xs group-hover:translate-x-1 transition-transform" />
+            </Link>
+          )}
         </div>
 
         {/* Cards grid */}
