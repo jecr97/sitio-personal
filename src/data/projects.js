@@ -21,11 +21,6 @@ const projects = [
     description: 'Plataforma de inscripción a torneo con integración de pasarelas de pago, cupones de descuento, webhooks asincronos y confirmación con QR. Demostración ficticia con datos estáticos.',
     img: paymentImg,
   },
-  {
-    id: 'microservices',
-    title: 'Arquitectura Microservicios',
-    description: 'Construcción de un sistema escalable de microservicios con Docker y Kubernetes.',
-  },
 ];
 
 export default projects;

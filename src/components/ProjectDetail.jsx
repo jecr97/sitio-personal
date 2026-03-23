@@ -85,15 +85,21 @@ export default function ProjectDetail() {
                 )}
 
                 <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border">
-                  <a href={`mailto:it-support@je-innovate.com?subject=${subject}&body=${body}`}
-                    className="btn-primary">
-                    <FontAwesomeIcon icon={faEnvelope} className="text-xs" />
-                    Contactar por correo
-                  </a>
-                  <Link to="/proyectos" className="btn-ghost">
-                    <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
-                    Volver
-                  </Link>
+                  {project.id === 'payment' && (
+                    <a href="https://payment.je-innovate.com/" target="_blank" rel="noopener noreferrer"
+                      className="btn-primary">
+                      <FontAwesomeIcon icon={faArrowRight} className="text-xs" />
+                      Visitar proyecto sitio
+                    </a>
+                  )}
+
+                  {(project.id === 'maquila' || project.id === 'tarjetas') && (
+                    <a href={`mailto:it-support@je-innovate.com?subject=${subject}&body=${body}`}
+                      className="btn-primary">
+                      <FontAwesomeIcon icon={faEnvelope} className="text-xs" />
+                      Solicitar acceso / Contactar
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
