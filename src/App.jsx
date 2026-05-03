@@ -1,38 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import ProjectDetail from './components/ProjectDetail';
-import Contact from './components/Contact';
-
-function Home() {
-  return (
-    <>
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-    </>
-  );
-}
+import Home from './components/Home';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[#04080f] font-sans antialiased">
-        <Navbar />
-        {/* Espaciador para el navbar fijo */}
-        <div className="h-16" />
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/acerca" element={<About />} />
-          <Route path="/proyectos" element={<Projects />} />
-          <Route path="/proyectos/:id" element={<ProjectDetail />} />
-          <Route path="/contacto" element={<Contact />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </Router>
   );
 }

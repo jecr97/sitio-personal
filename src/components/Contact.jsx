@@ -62,7 +62,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="section-padding bg-[#04080f]" id="contact">
+    <section className="section-padding bg-bg" id="contact">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
@@ -86,7 +86,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-[var(--text-secondary)] mb-0.5">{s.label}</p>
-                  <p className="text-white text-sm font-medium group-hover:text-accent transition-colors">{s.value}</p>
+                  <p className="text-[var(--text-primary)] text-sm font-medium group-hover:text-accent transition-colors">{s.value}</p>
                 </div>
               </a>
             ))}

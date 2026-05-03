@@ -58,7 +58,7 @@ const categories = [
 
 export default function About() {
   return (
-    <section className="section-padding bg-[#04080f] border-b border-border" id="about">
+    <section className="section-padding bg-bg border-b border-border" id="about">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -86,7 +86,7 @@ export default function About() {
                 cat.accent ? 'border-primary/40 bg-primary/5' : ''
               }`}
             >
-              <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                 {cat.accent && <span className="w-2 h-2 rounded-full bg-accent" />}
                 {cat.title}
               </h3>

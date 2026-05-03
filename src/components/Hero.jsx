@@ -6,13 +6,13 @@ const stack = ['React', 'CodeIgniter 4', 'Laravel', 'PHP', 'MySQL', 'REST APIs']
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#04080f]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-bg">
       {/* Background layers */}
       <div className="absolute inset-0 bg-hero-gradient pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+            'linear-gradient(rgb(var(--hero-grid-rgb) / 0.16) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--hero-grid-rgb) / 0.16) 1px, transparent 1px)',
           backgroundSize: '64px 64px',
         }}
       />
@@ -30,7 +30,7 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="animate-fade-in-up text-white font-extrabold tracking-tight mb-4">
+          <h1 className="animate-fade-in-up text-[var(--text-primary)] font-extrabold tracking-tight mb-4">
             <span className="block text-[var(--text-secondary)] text-xl font-medium mb-1">Hola, soy</span>
             <span className="text-5xl sm:text-6xl lg:text-7xl leading-none">FullStack</span>
             <br />
@@ -85,7 +85,7 @@ export default function Hero() {
             {/* Floating badge */}
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 glass px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-white text-xs font-medium">FullStack Developer</span>
+              <span className="text-[var(--text-primary)] text-xs font-medium">FullStack Developer</span>
             </div>
           </div>
         </div>

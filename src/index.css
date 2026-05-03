@@ -6,16 +6,63 @@
 
 @layer base {
   :root {
-    --primary: #0C3354;
-    --primary-light: #1464a0;
-    --primary-dark: #071e38;
-    --bg: #04080f;
-    --surface: #0a1628;
-    --surface-2: #0f2040;
-    --text-primary: #f0f4f8;
-    --text-secondary: #8ba3b8;
-    --border: #1a3050;
-    --accent: #38bdf8;
+    --bg-rgb: 6 17 30;
+    --surface-rgb: 10 29 47;
+    --surface-2-rgb: 9 48 80;
+    --primary-rgb: 15 130 140;
+    --primary-light-rgb: 120 185 181;
+    --primary-dark-rgb: 6 80 132;
+    --accent-rgb: 120 185 181;
+    --highlight-rgb: 50 10 107;
+    --text-primary-rgb: 236 245 246;
+    --text-secondary-rgb: 162 188 191;
+    --border-rgb: 15 130 140;
+    --nav-bg: rgba(6, 17, 30, 0.78);
+    --glass-bg: rgba(10, 29, 47, 0.72);
+    --hero-grid-rgb: 120 185 181;
+    --shadow-card: 0 18px 45px rgba(2, 10, 19, 0.35);
+    --shadow-card-hover: 0 24px 60px rgba(15, 130, 140, 0.18);
+    --shadow-glow: 0 0 30px rgba(15, 130, 140, 0.28);
+    --primary: rgb(var(--primary-rgb));
+    --primary-light: rgb(var(--primary-light-rgb));
+    --primary-dark: rgb(var(--primary-dark-rgb));
+    --bg: rgb(var(--bg-rgb));
+    --surface: rgb(var(--surface-rgb));
+    --surface-2: rgb(var(--surface-2-rgb));
+    --text-primary: rgb(var(--text-primary-rgb));
+    --text-secondary: rgb(var(--text-secondary-rgb));
+    --border: rgb(var(--border-rgb));
+    --accent: rgb(var(--accent-rgb));
+  }
+
+  :root[data-theme='light'] {
+    --bg-rgb: 246 243 194;
+    --surface-rgb: 255 255 255;
+    --surface-2-rgb: 246 243 194;
+    --primary-rgb: 227 116 52;
+    --primary-light-rgb: 145 198 188;
+    --primary-dark-rgb: 75 157 169;
+    --accent-rgb: 145 198 188;
+    --highlight-rgb: 227 116 52;
+    --text-primary-rgb: 40 40 40;
+    --text-secondary-rgb: 75 110 115;
+    --border-rgb: 145 198 188;
+    --nav-bg: rgba(246, 243, 194, 0.82);
+    --glass-bg: rgba(255, 255, 255, 0.78);
+    --hero-grid-rgb: 227 116 52;
+    --shadow-card: 0 16px 40px rgba(227, 116, 52, 0.12);
+    --shadow-card-hover: 0 24px 56px rgba(145, 198, 188, 0.18);
+    --shadow-glow: 0 0 28px rgba(227, 116, 52, 0.2);
+    --primary: rgb(var(--primary-rgb));
+    --primary-light: rgb(var(--primary-light-rgb));
+    --primary-dark: rgb(var(--primary-dark-rgb));
+    --bg: rgb(var(--bg-rgb));
+    --surface: rgb(var(--surface-rgb));
+    --surface-2: rgb(var(--surface-2-rgb));
+    --text-primary: rgb(var(--text-primary-rgb));
+    --text-secondary: rgb(var(--text-secondary-rgb));
+    --border: rgb(var(--border-rgb));
+    --accent: rgb(var(--accent-rgb));
   }
 
   html {
@@ -24,10 +71,11 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #04080f;
-    color: #f0f4f8;
+    background-color: var(--bg);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   * {
@@ -37,47 +85,124 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all duration-200 hover:bg-primary-light hover:shadow-glow hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-[#04080f];
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+    filter: saturate(1.05);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid rgb(var(--accent-rgb) / 0.7);
+    outline-offset: 2px;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-white font-semibold text-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/10 hover:border-white/40 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-[#04080f];
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(var(--border-rgb) / 0.35);
+    background: rgb(var(--surface-rgb) / 0.5);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-1px) scale(1.02);
+    background: rgb(var(--surface-rgb) / 0.7);
+    border-color: rgb(var(--primary-light-rgb) / 0.6);
+    color: var(--accent);
+  }
+
+  .btn-ghost:focus-visible {
+    outline: 2px solid rgb(var(--accent-rgb) / 0.7);
+    outline-offset: 2px;
   }
 
   .card {
-    @apply bg-surface rounded-2xl border border-border transition-all duration-300 hover:border-primary-light hover:shadow-card-hover;
+    background: var(--surface);
+    border-radius: 1rem;
+    border: 1px solid rgb(var(--border-rgb) / 0.32);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgb(var(--primary-light-rgb) / 0.55);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .section-title {
-    @apply text-3xl font-bold text-white tracking-tight;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
   }
 
   .section-subtitle {
-    @apply text-[var(--text-secondary)] text-base leading-relaxed;
+    font-size: 1rem;
+    line-height: 1.625;
+    color: var(--text-secondary);
   }
 
   .input-field {
-    @apply w-full bg-surface-2 border border-border text-[var(--text-primary)] placeholder-[var(--text-secondary)] px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-200;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(var(--border-rgb) / 0.35);
+    background: var(--surface-2);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .input-field::placeholder {
+    color: var(--text-secondary);
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: rgb(var(--accent-rgb) / 0.75);
+    box-shadow: 0 0 0 1px rgb(var(--accent-rgb) / 0.35);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    background: linear-gradient(135deg, var(--primary-light) 0%, rgb(var(--highlight-rgb)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .border-gradient {
-    border-image: linear-gradient(135deg, #38bdf8, #818cf8) 1;
+    border-image: linear-gradient(135deg, var(--primary-light), rgb(var(--highlight-rgb))) 1;
   }
 
   .glass {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    background: rgba(10, 22, 40, 0.8);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--glass-bg);
+    border: 1px solid rgb(var(--border-rgb) / 0.24);
   }
 
   .section-padding {

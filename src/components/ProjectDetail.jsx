@@ -15,12 +15,12 @@ function ProjectCard({ p }) {
           </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
-            <span className="text-4xl text-white/20 font-bold">{p.title.charAt(0)}</span>
+            <span className="text-4xl font-bold text-[rgb(var(--text-primary-rgb)/0.18)]">{p.title.charAt(0)}</span>
           </div>
         )}
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-accent transition-colors">{p.title}</h3>
+        <h3 className="text-[var(--text-primary)] font-semibold text-sm mb-2 group-hover:text-accent transition-colors">{p.title}</h3>
         <p className="text-[var(--text-secondary)] text-xs leading-relaxed flex-1 mb-3">{p.description}</p>
         <span className="inline-flex items-center gap-1 text-accent text-xs font-medium">
           Ver detalle <FontAwesomeIcon icon={faArrowRight} className="text-[10px] group-hover:translate-x-1 transition-transform" />
@@ -41,10 +41,10 @@ export default function ProjectDetail() {
       const body = encodeURIComponent(`Hola,\n\nMe gustaría solicitar más información sobre ${project.title}.\n\nGracias.`);
 
       return (
-        <div className="min-h-screen bg-[#04080f] section-padding">
+        <div className="min-h-screen bg-bg section-padding">
           <div className="max-w-5xl mx-auto">
             <Link to="/proyectos"
-              className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-white transition-colors mb-8">
+              className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-[var(--text-primary)] transition-colors mb-8">
               <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
               Volver a proyectos
             </Link>
@@ -55,13 +55,13 @@ export default function ProjectDetail() {
                   <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
                   <div className="absolute bottom-6 left-8">
-                    <h1 className="text-3xl font-bold text-white">{project.title}</h1>
+                    <h1 className="text-3xl font-bold text-[var(--text-primary)]">{project.title}</h1>
                   </div>
                 </div>
               )}
 
               <div className="p-8">
-                {!project.img && <h1 className="text-3xl font-bold text-white mb-6">{project.title}</h1>}
+                {!project.img && <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-6">{project.title}</h1>}
 
                 <h2 className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Resumen</h2>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-6">{project.description}</p>
@@ -109,9 +109,9 @@ export default function ProjectDetail() {
     }
 
     return (
-      <div className="min-h-screen bg-[#04080f] section-padding">
+      <div className="min-h-screen bg-bg section-padding">
         <div className="max-w-5xl mx-auto">
-          <Link to="/proyectos" className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-white transition-colors mb-8">
+          <Link to="/proyectos" className="inline-flex items-center gap-2 text-[var(--text-secondary)] text-sm hover:text-[var(--text-primary)] transition-colors mb-8">
             <FontAwesomeIcon icon={faArrowLeft} className="text-xs" /> Volver
           </Link>
           <p className="text-[var(--text-secondary)] mb-10">Proyecto no encontrado.</p>
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04080f] section-padding">
+    <div className="min-h-screen bg-bg section-padding">
       <div className="max-w-5xl mx-auto">
         <div className="mb-12">
           <span className="inline-block px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-accent text-xs font-medium mb-4">Proyectos</span>

@@ -24,7 +24,7 @@ export default function TechChip({ icon, label, description }) {
           open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}
       >
-        <p className="font-medium text-white mb-1">{label}</p>
+        <p className="font-medium text-[var(--text-primary)] mb-1">{label}</p>
         {description}
       </div>
     </div>

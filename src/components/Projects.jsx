@@ -45,14 +45,14 @@ export default function Projects() {
                   </>
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
-                    <span className="text-4xl text-white/20 font-bold">{p.title.charAt(0)}</span>
+                    <span className="text-4xl font-bold text-[rgb(var(--text-primary-rgb)/0.18)]">{p.title.charAt(0)}</span>
                   </div>
                 )}
               </div>
 
               {/* Body */}
               <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-white font-semibold text-base mb-2 group-hover:text-accent transition-colors">
+                <h3 className="text-[var(--text-primary)] font-semibold text-base mb-2 group-hover:text-accent transition-colors">
                   {p.title}
                 </h3>
                 <p className="text-[var(--text-secondary)] text-sm leading-relaxed flex-1 mb-4">
