@@ -1,17 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useState } from 'react';
 
 const socials = [
-  {
-    icon: faEnvelope,
-    label: 'Email',
-    value: 'it-support@je-innovate.com',
-    href: 'mailto:it-support@je-innovate.com',
-    bg: 'bg-primary/20',
-    color: 'text-accent',
-  },
   {
     icon: faLinkedin,
     label: 'LinkedIn',

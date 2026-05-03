@@ -15,8 +15,6 @@ import {
   faCode, 
   faTerminal, 
   faLaptopCode, 
-  faEnvelope, 
-  faPhone,
   faServer
 } from '@fortawesome/free-solid-svg-icons';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
@@ -466,30 +464,6 @@ export default function Home() {
 
                                 <div className="space-y-4">
                                     <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                                        <div className="w-12 h-12 bg-cyan-500/20 text-cyan-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <FontAwesomeIcon icon={faEnvelope} className="text-xl" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-cyan-200/60 uppercase tracking-wider font-bold">Email</p>
-                                            <a href="mailto:tu-correo@email.com" className="text-white font-medium hover:text-cyan-300 transition-colors">
-                                                tu-correo@email.com
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                                        <div className="w-12 h-12 bg-green-500/20 text-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <FontAwesomeIcon icon={faPhone} className="text-xl" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-cyan-200/60 uppercase tracking-wider font-bold">WhatsApp</p>
-                                            <a href="https://wa.me/" className="text-white font-medium hover:text-cyan-300 transition-colors">
-                                                +52 123 456 7890
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
                                         <div className="w-12 h-12 bg-gray-500/20 text-gray-300 rounded-lg flex items-center justify-center flex-shrink-0">
                                             <FontAwesomeIcon icon={faGithub} className="text-xl" />
                                         </div>
@@ -526,7 +500,7 @@ export default function Home() {
                                     <input
                                         type="text"
                                         placeholder="Tu nombre completo"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-[#0C3354] placeholder:text-sky-400/70 focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all"
                                     />
                                 </div>
 
@@ -535,7 +509,7 @@ export default function Home() {
                                     <input
                                         type="email"
                                         placeholder="tu-correo@email.com"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-[#0C3354] placeholder:text-sky-400/70 focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all"
                                     />
                                 </div>
 
@@ -544,7 +518,7 @@ export default function Home() {
                                     <textarea
                                         rows="5"
                                         placeholder="Cuéntame sobre tu proyecto..."
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-[#0C3354] placeholder:text-sky-400/70 focus:ring-2 focus:ring-[#0C3354] focus:border-transparent outline-none transition-all resize-none"
                                     ></textarea>
                                 </div>
 

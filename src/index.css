@@ -170,13 +170,13 @@
     border-radius: 0.75rem;
     border: 1px solid rgb(var(--border-rgb) / 0.35);
     background: var(--surface-2);
-    color: var(--text-primary);
+    color: rgb(var(--primary-light-rgb));
     font-size: 0.875rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   }
 
   .input-field::placeholder {
-    color: var(--text-secondary);
+    color: rgb(var(--primary-light-rgb) / 0.72);
   }
 
   .input-field:focus {
